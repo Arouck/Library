@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="center">
+		<p:dataTable value="#{authorController.authorsList}" var="author">
+			<f:facet name="header">
+				<h3>Authors List</h3>
+			</f:facet>
+			<p:column headerText="Id">
+				<h:outputText value="#{author.id}" />
+			</p:column>
+			<p:column headerText="Name">
+				<h:outputText value="#{author.nome}" />
+			</p:column>
+			<p:column headerText="Options">
+				<p:linkButton value="Edit" outcome="editAuthor.xhtml">
+					<f:param name="id" value="#{author.id}" />
+				</p:linkButton>
+				<p:linkButton value="Remove" outcome="removeAuthor.xhtml">
+					<f:param name="id" value="#{author.id}" />
+				</p:linkButton>
+			</p:column>
+			<f:facet name="footer">
+				<p:linkButton value="New" outcome="addAuthor.xhtml" />
+			</f:facet>
+		</p:dataTable>
+	</ui:define>
+</ui:composition>
+</html>

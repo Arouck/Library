@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:viewParam name="id" value="#{authorController.id}" />
+			<f:event listener="#{authorController.loadRegister()}"
+				type="preRenderView" />
+		</f:metadata>
+	</ui:define>
+
+	<ui:define name="center">
+		<h:form>
+			<p:panelGrid columns="2" style="width:30%;text-align:center">
+					<p:outputLabel value="Name" style="margin:3%" />
+					<p:inputText size="20" maxlength="35"
+						value="#{authorController.author.nome}" style="margin:3%" />
+				<f:facet name="footer">
+					<div style="text-align:center">
+						<p:commandButton value="Add"
+							action="#{authorController.persist()}"
+							style="margin-right:10%;margin-top:2%"
+							update=":growlGlobal" />
+						<p:linkButton value="Return" outcome="authorsList.xhtml"
+							style="margin-bottom:2%" />
+					</div>
+				</f:facet>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
